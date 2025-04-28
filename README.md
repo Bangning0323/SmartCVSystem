@@ -47,66 +47,63 @@ A Django-powered candidate–job matching platform using MySQL. It parses digita
    cd SmartCVSystem
 
 
-## 📂 Suggested Django Project Layout  
-(Aligned 1-to-1 with your eight functional modules)
+## 📂 Suggested Django Project Layout
+_Each top-level package maps directly to the functional modules in your design._
 
+```text
 SmartCVSystem/
-├── config/                          # Django project settings & URL routing
+├── manage.py
+├── requirements.txt
+├── .env.example
+├── config/                  # Django project settings & root URLs
 │   ├── __init__.py
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
-│
 ├── apps/
-│   ├── authx/                       # 🔐 Authentication & Authorization
-│   │   ├── models.py   # User, Role, Permission objects
-│   │   ├── views.py    # Login / register / password flows
+│   ├── authx/               # Authentication & Authorization
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   ├── views.py
 │   │   ├── urls.py
 │   │   └── tests.py
-│   │
-│   ├── profiles/                    # 👤 User & Profile Management
-│   │   ├── models.py   # UserProfile, ResumeFile FK to user
-│   │   ├── views.py    # Profile edit / resume upload forms
-│   │   └── …
-│   │
-│   ├── resumes/                     # 📄 CV Upload & Storage + Parsing
-│   │   ├── models.py   # FileMeta + ParsedData
-│   │   ├── services/   # parser.py (spaCy, PyPDF, docx2txt…)
-│   │   ├── views.py    # Upload, preview parsed data
-│   │   └── …
-│   │
-│   ├── repository/                  # 🔎 Search & Filtering  (CV Repository)
-│   │   ├── models.py   # IndexedTerm, Skill, etc.
-│   │   ├── search.py   # Elastic / PG-full-text logic
-│   │   └── …
-│   │
-│   ├── jobposts/                    # 📋 Job Postings Management
-│   │   ├── models.py   # JobPost, Requirement
-│   │   ├── views.py    # CRUD for job listings
-│   │   └── …
-│   │
-│   ├── matching/                    # 🧮 Candidate Scoring
-│   │   ├── models.py   # MatchScore table
-│   │   ├── rules.py    # scoring weight & algorithm
-│   │   └── …
-│   │
-│   ├── shortlist/                   # ⭐ Shortlisting Panel
-│   │   ├── models.py   # Shortlist model (FK job ↔ CV)
-│   │   ├── views.py    # HR dashboard, add/remove candidates
-│   │   └── …
-│   │
-│   └── common/                      # Reusable utilities (mixins, helpers)
+│   ├── profiles/            # User & Profile Management
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   └── urls.py
+│   ├── resumes/             # CV Upload, Storage & Parsing
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   ├── services/
+│   │   │   └── parser.py
+│   │   ├── views.py
+│   │   └── urls.py
+│   ├── repository/          # Search & Filtering
+│   │   ├── migrations/
+│   │   ├── search.py
+│   │   ├── views.py
+│   │   └── urls.py
+│   ├── jobposts/            # Job Postings Management
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   └── urls.py
+│   ├── matching/            # Candidate Scoring
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   ├── rules.py
+│   │   └── views.py
+│   ├── shortlist/           # Shortlisting Panel
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   └── views.py
+│   └── common/              # Reusable utilities
 │       ├── mixins.py
 │       └── validators.py
-│
-├── templates/                       # Global base templates (per-app templates live inside each app)
+├── templates/               # Global base templates (per-app templates live inside each app)
 │   └── base.html
-│
-├── static/                          # Global static assets (logo, CSS vars, JS libs)
-│
-├── requirements.txt
-├── .env.example
-└── manage.py
+└── static/                  # Global static assets
 
 
 
