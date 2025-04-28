@@ -10,11 +10,14 @@ A Django-powered candidate–job matching platform using MySQL. It parses digita
 
 ## 🛠️ Tech Stack
 
-- **Backend:** Python 3.x, Django 4.x  
-- **Database:** MySQL 8.x  
-- **Authentication:** Django’s built-in auth system  
-- **Environment:** `.env` (via `django-environ` or similar)  
-- **Frontend (optional):** Bootstrap / TailwindCSS  
+| Layer / Concern   | Technology |
+|-------------------|------------|
+| **Framework**     | Django 4 (on Python 3.8 +) |
+| **Database**      | MySQL 8 |
+| **File Storage**  | Amazon S3 (object storage for uploaded CVs & reports) |
+| **Cloud Hosting** | AWS (e.g., Elastic Beanstalk / EC2 / ECS) |
+| **CI / VCS**      | Git & GitHub |
+
 
 ---
 
