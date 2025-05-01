@@ -109,4 +109,15 @@ SmartCVSystem/
 └── static/                  # Global static assets
 
 
+python manage.py startapp authx apps/authx
+python manage.py startapp profiles apps/profiles
+python manage.py startapp resumes    apps/resumes
+python manage.py startapp repository apps/repository
+python manage.py startapp jobposts   apps/jobposts
+python manage.py startapp matching   apps/matching
+python manage.py startapp shortlist  apps/shortlist
+python manage.py startapp dashboard  apps/dashboard
+python manage.py startapp common     apps/common
+
+
 
