@@ -22,7 +22,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
     <div class="container-fluid">
-      <a class="navbar-brand" href="">SmartCVSystem</a> 
+      <a class="navbar-brand" href="">SmartCVSystem</a>  <!-- {% url 'dashboard:index' %} -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navbarNav" aria-controls="navbarNav"
               aria-expanded="false" aria-label="Toggle navigation">
@@ -32,20 +32,20 @@
         <ul class="navbar-nav ms-auto">
           {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'profiles:detail' %}">Profile</a> 
+              <a class="nav-link" href="{% url 'profiles:detail' %}">Profile</a> <!-- {% url 'profiles:detail' %} -->
             </li>
             <li class="nav-item">
-              <form method="post" action="">
+              <form method="post" action=""> <!-- {% url 'authx:logout' %} -->
                 {% csrf_token %}
                 <button class="btn btn-link nav-link" type="submit">Logout</button>
               </form>
             </li>
           {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'authx:login' %}">Login</a> 
+              <a class="nav-link" href="">Login</a> <!-- {% url 'authx:login' %} -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'authx:register' %}">Register</a> 
+              <a class="nav-link" href="">Register</a> <!-- {% url 'authx:register' %} -->
             </li>
           {% endif %}
         </ul>
