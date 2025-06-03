@@ -99,9 +99,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "smartcv",
+        "NAME": "web_project",
         "USER": "root",
-        "PASSWORD": "Rasu1991",
+        "PASSWORD": "517831",
         "HOST": "127.0.0.1",
         "PORT": "3306",
         "OPTIONS": {
@@ -155,8 +155,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

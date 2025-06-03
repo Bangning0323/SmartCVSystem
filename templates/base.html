@@ -1,85 +1,91 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html
+  lang="en"
+  class="light-style layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-template="vertical-menu-template-free"
+>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}SmartCVSystem{% endblock %}</title>
+    <meta charset="UTF-8">
+    <title>SmartCVSystem{% block title %}{% endblock %}</title>
 
-  <!-- Bootstrap CSS (via CDN) -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    crossorigin="anonymous"
-  >
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
 
+    <meta name="description" content=""/>
 
-  <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon/logo.png' %}"/>
 
-  {% block extra_head %}{% endblock %}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="{% static 'vendor/fonts/boxicons.css' %}v"/>
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/css/core.css' %}" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="{% static 'vendor/css/theme-default.css' %}" class="template-customizer-theme-css"/>
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}"/>
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}"/>
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/page-auth.css' %}"/>
+    <!-- Helpers -->
+    <script src="{% static 'vendor/js/helpers.js' %}"></script>
+
+    <script src="{% static 'js/config.js' %}"></script>
+
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="">Smart CV</a> 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarNav" aria-controls="navbarNav"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'profiles:detail' %}">Profile</a> 
-            </li>
-            <li class="nav-item">
-              <a class="btn btn-link" href="{% url 'authx:logout' %}">Logout</a>
-            </li>
-          {% else %}
-            {# don't show Login when already on login page #}
-            {% if request.resolver_match.url_name != 'login' %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'authx:login' %}">Login</a>
-              </li>
-            {% endif %}
-            {# don't show Register when already on register page #}
-            {% if request.resolver_match.url_name != 'register' %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'authx:register' %}">Register</a>
-              </li>
-            {% endif %}
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Main content -->
-  <div class="container">
+<!-- Main content -->
+<div class="container">
     {% if messages %}
-      <div>
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        {% endfor %}
-      </div>
+        <div>
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
     {% block content %}{% endblock %}
-  </div>
+</div>
 
-  <!-- Bootstrap JS (via CDN) -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"
-  ></script>
+<!-- Core JS -->
+<!-- build:js vendor/js/core.js -->
+<script src="{% static 'vendor/libs/jquery/jquery.js' %}"></script>
+<script src="{% static 'vendor/libs/popper/popper.js' %}"></script>
+<script src="{% static 'vendor/js/bootstrap.js' %}"></script>
+<script src="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
 
-  <!-- Your custom JS -->
-  <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'vendor/js/menu.js' %}"></script>
+<!-- endbuild -->
 
-  {% block extra_js %}{% endblock %}
+<!-- Vendors JS -->
+
+<!-- Main JS -->
+<script src="{% static 'js/main.js' %}"></script>
+
+<!-- Page JS -->
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+{% block extra_js %}{% endblock %}
 </body>
 </html>
