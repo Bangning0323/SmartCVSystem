@@ -21,10 +21,10 @@ class LogoutView(LoginRequiredMixin, View):
         logout(request)
         return redirect("authx:login")
 
-class ForgetPswView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
+class ForgetView(View):
+    def get(self, request):
         return render(request, "authx/password-reset.html")
 
-class PasswordResetView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, "authx/password-reset.html")
+class AccountView(View):
+    def get(self, request):
+        return render(request, "authx/account.html")

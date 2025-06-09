@@ -116,36 +116,6 @@
                     </a>
                 </li>
 
-                <!-- Layouts -->
-                <li class="menu-item active open">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-layout"></i>
-                        <div data-i18n="Layouts">Layouts</div>
-                    </a>
-
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="" class="menu-link">
-                                <div data-i18n="Without menu">Without menu</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="" class="menu-link">
-                                <div data-i18n="Without navbar">Without navbar</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="" class="menu-link">
-                                <div data-i18n="Container">Container</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="" class="menu-link">
-                                <div data-i18n="Fluid">Fluid</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
                 <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Pages</span>
@@ -390,7 +360,7 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
-                                                    <img src="../assets/img/avatars/1.png" alt
+                                                    <img src="{% static 'img/avatars/1.png' %}" alt
                                                          class="w-px-40 h-auto rounded-circle"/>
                                                 </div>
                                             </div>
@@ -446,12 +416,7 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
-
-                <div class="container-xxl flex-grow-1 container-p-y">
-                    <!-- Layout Demo -->
-
-                    <!--/ Layout Demo -->
-                </div>
+                {% block content %}{% endblock %}
                 <!-- / Content -->
 
                 <!-- Footer -->
