@@ -27,4 +27,4 @@ class ForgetView(View):
 
 class AccountView(View):
     def get(self, request):
-        return render(request, "authx/account.html")
+        return render(request, "profile/detailView.html")

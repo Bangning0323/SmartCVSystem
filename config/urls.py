@@ -25,4 +25,5 @@ urlpatterns = [
     path("", landing, name="landing"),
     path("auth/", include("apps.authx.urls", namespace="authx")),
     path("profiles/", include("apps.profiles.urls", namespace="profiles")),
+
 ]
