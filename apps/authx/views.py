@@ -28,3 +28,7 @@ class ForgetView(View):
 class AccountView(View):
     def get(self, request):
         return render(request, "profile/detailView.html")
+
+class SearchView(View):
+    def get(self, request):
+        return render(request, "resumes/search.html")

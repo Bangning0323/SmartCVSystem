@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegisterView, LoginView, LogoutView, ForgetView, AccountView
+from .views import RegisterView, LoginView, LogoutView, ForgetView, AccountView, SearchView
 
 app_name = "authx"
 
@@ -9,4 +9,5 @@ urlpatterns = [
     path("logout/",  LogoutView.as_view(),   name="logout"),
     path("forget/", ForgetView.as_view(), name="forget" ),
     path("account/", AccountView.as_view(), name="account"),
+    path("search/", SearchView.as_view(), name="search"),
 ]

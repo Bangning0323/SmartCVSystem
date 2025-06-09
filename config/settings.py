@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "apps.common",  
     "apps.authx.apps.AuthxConfig",
     "apps.profiles.apps.ProfilesConfig",
+    "apps.resumes.apps.ResumesConfig",
 ]
 
 MIDDLEWARE = [
