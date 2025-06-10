@@ -1,0 +1,70 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="filter-section">
+        <h2>Shuffle</h2>
+        <form method="get" class="grid-form">
+            {{ filter_form.as_p }}
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a href="" class="btn btn-secondary">Reset</a>
+        </form>
+    </div>
+
+    <div class="results-section">
+        {% if resumes %}
+            <div class="resume-count">Find {{ page_obj.paginator.count }} Resume</div>
+
+            {% for resume in resumes %}
+                <div class="resume-card">
+                    <div class="header">
+                        <h3>{{ resume.user.get_full_name }}</h3>
+                        <span class="date">{{ resume.upload_date|date:"Y-m-d H:i" }}</span>
+                    </div>
+                    <div class="skills">
+                        <strong>Skills:</strong>
+                        {{ resume.skills|truncatechars:100 }}
+                    </div>
+                    <div class="tags">
+                        {% for tag in resume.tags %}
+                            <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <a href="{{ resume.file.url }}" class="btn btn-download" target="_blank">
+                        Download
+                    </a>
+                </div>
+            {% endfor %}
+
+            <nav class="mt-4">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="">Top</a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="">End</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% else %}
+            <p class="no-results">No found</p>
+        {% endif %}
+    </div>
+{% endblock %}
