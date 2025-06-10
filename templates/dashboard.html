@@ -110,7 +110,7 @@
             <ul class="menu-inner py-1">
                 <!-- Dashboard -->
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="{% url 'dashboard' %}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Dashboard</div>
                     </a>
@@ -171,7 +171,24 @@
                         <div data-i18n="Basic">Cards</div>
                     </a>
                 </li>
+                <!-- Resumes -->
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">Resumes</span></li>
 
+                <!-- Resume list -->
+                <li class="menu-item">
+                    <a href="{% url 'resume:resume-search' %}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-collection"></i>
+                        <div data-i18n="Basic">Resume list</div>
+                    </a>
+                </li>
+
+                <!-- Resumes Search -->
+                <li class="menu-item">
+                    <a href="" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-collection"></i>
+                        <div data-i18n="Basic">Resumes Search</div>
+                    </a>
+                </li>
             </ul>
         </aside>
         <!-- / Menu -->
@@ -210,11 +227,11 @@
                         <li class="nav-item lh-1 me-3">
                             <a
                                     class="github-button"
-                                    href="https://github.com/themeselection/sneat-html-admin-template-free"
+                                    href=""
                                     data-icon="octicon-star"
                                     data-size="large"
                                     data-show-count="true"
-                                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
+                                    aria-label=""
                             >Star</a
                             >
                         </li>
@@ -302,7 +319,8 @@
                                 document.write(new Date().getFullYear());
                             </script>
                             , made with ❤️ by
-                            <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Team B</a>
+                            <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Team
+                                B</a>
                         </div>
                         <div>
                             <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>

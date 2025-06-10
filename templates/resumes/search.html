@@ -2,145 +2,61 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4">
+    <div class="container mt-4">
+        <div class="row mt-4">
+            <div class="col">
+                {% if page_obj %}
+                    <div class="list-group">
+                        {% for resume in page_obj %}
+                            <div class="list-group-item">
+                                <div class="d-flex justify-content-between">
+                                    <h5>{{ resume.title }}</h5>
+                                    <div>
+                                        <span class="badge bg-primary">{{ resume.get_file_type_display }}</span>
+                                        <span class="badge bg-secondary">{{ resume.created_at|date:"Y-m-d" }}</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    {% for tag in resume.tags_list %}
+                                        <span class="badge bg-light text-dark">{{ tag }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
 
-  <form method="get" action="">
-    <div class="row g-3">
+                    <!-- paging -->
+                    <nav class="mt-4">
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="">Top</a>
+                                </li>
+                            {% endif %}
 
-      <div class="col-md-8">
-        <div class="input-group">
-            <label>
-                <input type="text"
-                       class="form-control"
-                       name="q"
-                       placeholder="Enter keyword..."
-                       value="{{ request.GET.q }}">
-            </label>
-            <button class="btn btn-primary" type="submit">
-            <i class="bi bi-search"></i>
-          </button>
+                            {% for num in page_obj.paginator.page_range %}
+                                {% if page_obj.number == num %}
+                                    <li class="page-item active">
+                                        <span class="page-link">{{ num }}</span>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="">{{ num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="">End</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% else %}
+                    <div class="alert alert-info">No resumes found</div>
+                {% endif %}
+            </div>
         </div>
-      </div>
-
-
-      <div class="col-md-4">
-        <select class="form-select" name="sort">
-          <option value="-created_at" {% if request.GET.sort == "-created_at" %}selected{% endif %}>Newest</option>
-          <option value="created_at" {% if request.GET.sort == "created_at" %}selected{% endif %}>Oldest</option>
-          <option value="title" {% if request.GET.sort == "title" %}selected{% endif %}>Name order</option>
-        </select>
-      </div>
     </div>
-
-    <!--  -->
-    <div class="row mt-3 g-3">
-
-      <!-- Date -->
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h6 class="card-title">Upload time</h6>
-            <div class="mb-3">
-              <label class="form-label">Start Time</label>
-              <input type="date"
-                     class="form-control"
-                     name="start_date"
-                     value="{{ request.GET.start_date }}">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">End Time</label>
-              <input type="date"
-                     class="form-control"
-                     name="end_date"
-                     value="{{ request.GET.end_date }}">
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <h6 class="card-title">Filter criteria</h6>
-            {% for key, value in active_filters.items %}
-              {% if value %}
-              <span class="badge bg-secondary mb-2">
-                {{ key }}: {{ value }}
-                <a href="" class="text-white ms-2">
-                  <i class="bi bi-x"></i>
-                </a>
-              </span>
-              {% endif %}
-            {% endfor %}
-            {% if active_filters %}
-            <div class="mt-3">
-              <a href="{% url 'resume-list' %}" class="btn btn-sm btn-danger">
-                Clear all
-              </a>
-            </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-
-
-  <div class="row mt-4">
-    <div class="col">
-      {% if page_obj %}
-        <div class="list-group">
-          {% for resume in page_obj %}
-          <div class="list-group-item">
-            <div class="d-flex justify-content-between">
-              <h5>{{ resume.title }}</h5>
-              <div>
-                <span class="badge bg-primary">{{ resume.get_file_type_display }}</span>
-                <span class="badge bg-secondary">{{ resume.created_at|date:"Y-m-d" }}</span>
-              </div>
-            </div>
-            <div class="mt-2">
-              {% for tag in resume.tags_list %}
-              <span class="badge bg-light text-dark">{{ tag }}</span>
-              {% endfor %}
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-
-        <!-- paging -->
-        <nav class="mt-4">
-          <ul class="pagination">
-            {% if page_obj.has_previous %}
-            <li class="page-item">
-              <a class="page-link" href="">Top</a>
-            </li>
-            {% endif %}
-
-            {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-            <li class="page-item active">
-              <span class="page-link">{{ num }}</span>
-            </li>
-            {% else %}
-            <li class="page-item">
-              <a class="page-link" href="">{{ num }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-
-            {% if page_obj.has_next %}
-            <li class="page-item">
-              <a class="page-link" href="">End</a>
-            </li>
-            {% endif %}
-          </ul>
-        </nav>
-      {% else %}
-        <div class="alert alert-info">No resumes found</div>
-      {% endif %}
-    </div>
-  </div>
-</div>
 {% endblock %}

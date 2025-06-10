@@ -13,21 +13,21 @@ class ResumeFilterForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
-    tags = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': '标签,逗号分隔'}))
+    tags = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'label,label,....'}))
     start_date = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={'type': 'date'}),
-        label='上传时间起'
+        label='Start date'
     )
     end_date = forms.DateField(
         required=False,
         widget=forms.DateInput(attrs={'type': 'date'}),
-        label='上传时间止'
+        label='End Date'
     )
     keyword = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={'placeholder': '技能关键词'}),
-        label='技能搜索'
+        widget=forms.TextInput(attrs={'placeholder': 'Skill keyword'}),
+        label='Skill keyword search'
     )
 
     def clean_tags(self):
