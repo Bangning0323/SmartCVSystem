@@ -16,17 +16,15 @@ class LoginView(View):
         password = request.POST.get("password")
 
         try:
-            user = User.objects.get(name=username)
-
+            user = User.objects.get(username=username)
         except Exception as e:
             print(e)
             return HttpResponse("Username not found")
 
-        # 如果用户名对，就判断密码有没有输入正确
         if password != user.password:
             return HttpResponse("Password Error")
 
-        return redirect("authx:redirect")
+        return render(request, "dashboard.html", {"user": user})
 
 
 
@@ -37,13 +35,16 @@ class RegisterView(View):
     def post(self, request):
         name = request.POST.get("username")
         passwd = request.POST.get("password")
+        email = request.POST.get("email")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
 
         user = User.objects.all()
         for i in user:
             if name == i.username:
                 return HttpResponse("Username already exists")
         try:
-            User.objects.create(name=name, password=passwd)
+            User.objects.create(username=name, password=passwd, email=email, first_name=first_name, last_name=last_name)
         except Exception as e:
             return HttpResponse("Register error")
 
@@ -54,7 +55,6 @@ class LogoutView(LoginRequiredMixin, View):
     """
     Logs out on GET and redirects to the login page.
     """
-
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect("authx:login")

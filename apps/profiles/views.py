@@ -9,3 +9,7 @@ from apps.authx.models import User
 class DetailView(View):
     def get(self, request):
         return render(request, "profile/detailView.html")
+
+
+
+

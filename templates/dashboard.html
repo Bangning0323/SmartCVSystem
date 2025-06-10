@@ -307,7 +307,11 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
-                {% block content %}{% endblock %}
+                {% block content %}
+                    <div class="container-fluid flex-grow-1 container-p-y d-flex align-items-center justify-content-center">
+                        <h1 class="page-title">Welcome User: {{ user.username }} </h1>
+                    </div>
+                {% endblock %}
                 <!-- / Content -->
 
                 <!-- Footer -->
