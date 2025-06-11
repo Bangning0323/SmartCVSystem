@@ -1,6 +1,5 @@
 {% load static %}
 <!DOCTYPE html>
-
 <html
         lang="en"
         class="light-style layout-menu-fixed"
@@ -176,7 +175,7 @@
 
                 <!-- Resume list -->
                 <li class="menu-item">
-                    <a href="{% url 'resume:resume-search' %}" class="menu-link">
+                    <a href="{% url 'resumes:resume-search' %}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-collection"></i>
                         <div data-i18n="Basic">Resume list</div>
                     </a>
@@ -184,9 +183,21 @@
 
                 <!-- Resumes Search -->
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="{% url 'resumes:resume-search' %}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-collection"></i>
                         <div data-i18n="Basic">Resumes Search</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{% url 'resumes:add_resume' %}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-collection"></i>
+                        <div data-i18n="Basic">Add new resume</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{% url 'resumes:add_skill' %}" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-collection"></i>
+                        <div data-i18n="Basic">Add new skill</div>
                     </a>
                 </li>
             </ul>

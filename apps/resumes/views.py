@@ -1,6 +1,8 @@
 from django.views.generic import ListView
 from django.db.models import Q
-
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from .forms import ResumeForm
 from . import models
 from .models import Resume
 from .forms import ResumeFilterForm
@@ -68,3 +70,46 @@ class ResumeListView(ListView):
         queryset = models.Resume.objects.all()
         return queryset
 
+
+@login_required
+def create_resume(request):
+    if request.method == 'POST':
+        form = ResumeForm(request.POST, request.FILES)
+        if form.is_valid():
+            resume = form.save(commit=False)
+            resume.user = request.user
+            resume.save()
+            form.save_m2m()
+
+
+            if tags := form.cleaned_data.get('tags'):
+                resume.tags = ','.join([t.strip() for t in tags.split(',')])
+                resume.save()
+
+            return redirect('dashboard')
+    else:
+        form = ResumeForm()
+
+    return render(request, 'resumes/add_resume.html', {'form': form})
+
+
+from django.shortcuts import render, redirect
+from .models import Skill
+from .forms import SkillForm
+
+
+def skill_management(request):
+    skills = Skill.objects.all().order_by('name')
+
+    if request.method == 'POST':
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('resumes:add_skill')
+    else:
+        form = SkillForm()
+
+    return render(request, 'resumes/add_new_skill.html', {
+        'skills': skills,
+        'form': form
+    })
